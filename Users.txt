@@ -1,0 +1,73 @@
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class Users {
+    @Test
+    public void AddUsers() {
+        System.setProperty("webdriver.gecko.driver","C:\\Users\\Karthik\\Downloads\\geckodriver-v0.20.1-win64\\geckodriver.exe");
+        WebDriver driver = new FirefoxDriver();
+        login1 login = new login1();
+        login.LMSLogin(driver);
+        try {
+            Thread.sleep(5000);
+
+        }
+        catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        WebElement element = driver.findElement(By.id("ext-gen185"));
+        element.click();
+
+        element = driver.findElement(By.xpath("//td[1]/table/tbody/tr/td[2]/em/button"));
+
+// Click button 'Actions'
+        element.click();
+
+// try to sleep (wait) for 5 sec (using exception handler)
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+// Find menu item 'Add User' by link text
+        element = driver.findElement(By.linkText("Add User"));
+
+// Click menu item 'Add User'
+        element.click();
+
+        element= driver.findElement(By.name("Username"));
+        element.sendKeys("xxxx");
+
+        element=driver.findElement(By.name("Password"));
+        element.sendKeys("yyyyy");
+
+        element=driver.findElement(By.xpath("//div[5]/div/div[2]/div/div/table/tbody/tr/td[1]/table/tbody/tr/td[2]/em/button"));
+        element.click();
+
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        WebElement body = driver.findElement(By.tagName("body"));
+        boolean ret = body.getText().contains("xxxx");
+        System.out.println(ret);
+
+        element = driver.findElement(By.xpath("//div[5]/div/div/div/div[2]/div[1]/div/div/div[1]/div/table/tbody/tr/td[5]/table/tbody/tr/td[2]/em/button"));
+        element.click();
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        driver.quit();
+
+
+
+
+    }
+}
